@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Generate Header File",
+		"type": "shell",
+		"command": "node",
+		"args": [
+		  "${workspaceFolder}/.vscode/generateClass.js",
+		  "${input:className}",
+		  "${input:outputDir}"
+		],
+		"problemMatcher": [],
+		"group": "build"
+	  },
+	  {
+		"label": "Generate CPP File",
+		"type": "shell",
+		"command": "node",
+		"args": [
+		  "${workspaceFolder}/.vscode/implementClass.js",
+		  "${input:className}",
+		  "${input:outputDir}"		
+		],
+		"problemMatcher": [],
+		"group": "build",
+		"dependsOn": "Generate Header File"
+	  }
+	],
+	"inputs": [
+	  {
+		"id": "className",
+		"type": "promptString",
+		"description": "Enter the class name"
+	  },
+	  {
+		"id": "outputDir",
+		"type": "promptString",
+		"description": "Enter the output directory for the files"
+	  }
+	]
+  }
